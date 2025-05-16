@@ -1,19 +1,16 @@
 package com.example.SMS.Model;
 
+
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Data
 @Entity
-@Table(name = "User_Table")
-public class userModel {
+@Data
+@Table(name = "Department_Details")
+public class DepartmentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String userName;
-    private String password;
-    private String role="USER";
-
-
+    private String Course;
 }

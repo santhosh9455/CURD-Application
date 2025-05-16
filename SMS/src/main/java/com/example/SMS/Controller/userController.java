@@ -1,6 +1,8 @@
 package com.example.SMS.Controller;
 
+import com.example.SMS.Model.DepartmentEntity;
 import com.example.SMS.Model.userModel;
+import com.example.SMS.Service.DepartmentService;
 import com.example.SMS.Service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +16,16 @@ public class userController {
 
     @Autowired
     private userService userServiceObj;
+
+    @Autowired
+    private DepartmentService departmentService;
     
 
     @PostMapping("/createUser")
-    public String createUser(@RequestBody userModel user){
+    public List<DepartmentEntity> createUser(@RequestBody userModel user){
         userServiceObj.createUser(user);
-        return "Saved Successfully";
+        return departmentService.getAll();
+
     }
     @GetMapping("/userdata")
     public List<userModel> userData(){
