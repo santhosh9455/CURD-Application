@@ -4,8 +4,6 @@ package com.example.SMS.Service;
 import com.example.SMS.Model.userModel;
 import com.example.SMS.Repository.userRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +20,11 @@ public class userService {
     public PasswordEncoder passwordEncoder;
 
 
-    public void createUser(userModel user) {
+    public userModel createUser(userModel user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepoObj.save(user);
+        return userRepoObj.save(user);
     }
+
 
     public List<userModel> findAlluser() {
         return userRepoObj.findAll();

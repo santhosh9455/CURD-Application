@@ -26,7 +26,7 @@ public class CustemUserDetailService implements UserDetailsService {
         return new User(
                 user.getUserName(),
                 user.getPassword(),
-                Collections.singleton(new SimpleGrantedAuthority("USER")) // or hardcode ROLE_USER
+                Collections.singleton(new SimpleGrantedAuthority("ROLE_"+user.getRole())) // or hardcode ROLE_USER
         );
     }
 }

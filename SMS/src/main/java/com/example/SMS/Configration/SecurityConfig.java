@@ -8,12 +8,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -28,10 +25,13 @@ public class SecurityConfig {
                         .requestMatchers("/dept/**").permitAll()
                         .requestMatchers(HttpMethod.POST,"/user/createUser")
                         .permitAll()// Allow all
-                        .requestMatchers("/user/**").authenticated()  // Require auth
+                        .requestMatchers("/user/**")
+                        .authenticated()  // Require auth
                         .anyRequest().permitAll()
                 );
         http.formLogin(form->form.permitAll());
+//                http.sessionManagement(ses -> ses
+//                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return http.build();
     }

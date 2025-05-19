@@ -1,6 +1,5 @@
 package com.example.SMS.Controller;
 
-import com.example.SMS.Model.DepartmentEntity;
 import com.example.SMS.Model.userModel;
 import com.example.SMS.Service.DepartmentService;
 import com.example.SMS.Service.userService;
@@ -22,11 +21,12 @@ public class userController {
     
 
     @PostMapping("/createUser")
-    public List<DepartmentEntity> createUser(@RequestBody userModel user){
-        userServiceObj.createUser(user);
-        return departmentService.getAll();
+    public userModel createUser(@RequestBody userModel user){
+
+        return userServiceObj.createUser(user);
 
     }
+
     @GetMapping("/userdata")
     public List<userModel> userData(){
         return userServiceObj.findAlluser();
